@@ -9,6 +9,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface PegawaiDb extends JpaRepository<PegawaiModel, Long>{
 	PegawaiModel findDetailByNip(String nip);
-	
-//	List<PegawaiModel> findByTahunMasukAndTanggalLahir(String tahunMasuk, Date tanggalLahir);
 }

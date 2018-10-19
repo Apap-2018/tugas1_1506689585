@@ -1,5 +1,7 @@
 package com.apap.tugas1.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,5 +50,18 @@ public class JabatanController {
 		jabatan.setId(jabatan.getId());
 		jabatanService.ubahJabatan(jabatan);
 		return "submit-change-jabatan";
+	}
+	
+	@RequestMapping(value= "/jabatan/hapus", method = RequestMethod.POST)
+	private String hapusJabatan(@ModelAttribute JabatanModel jabatan, @RequestParam("id") Long id, Model model ) {
+		jabatanService.hapusJabatanDetailById(id);
+		return "delete-jabatan";
+	}
+	
+	@RequestMapping(value= "/jabatan/viewall", method = RequestMethod.GET)
+	private String lihatSemuaJabatan(Model model) {
+		List<JabatanModel> allJabatan = jabatanService.getAllJabatan();
+		model.addAttribute("jabatan", allJabatan);
+		return "viewall-jabatan";
 	}
 }

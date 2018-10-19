@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Daftar Semua Jabatan Pegawai</title>
+	
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+		
+		<script>
+    		$(document).ready(function() {
+      		$('#jabatanAll').DataTable();
+ 			});
+		</script>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar"></nav>
+		<div class="container">
+			<table id="jabatanAll" class="table table-bordered table-striped table-hover">
+				<thead>
+					<tr>
+						<th style="text-align: center">No.</th>
+						<th style="text-align: center">Nama</th>
+						<th style="text-align: center">Deskripsi</th>
+						<th style="text-align: center">Gaji</th>	
+						<th style="text-align: center">Jumlah Pegawai</th>	
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="jabatan, iterationStatus : ${jabatan}">
+						<td th:text="${iterationStatus.count}" style="text-align: center"></td>
+						<td th:text="${jabatan.nama}"></td>
+						<td th:text="${jabatan.deskripsi}"></td>
+						<td th:text="${jabatan.gajiPokok}"></td>	
+						<td th:text="${jabatan.getAllPegawai().size()}"></td>			
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</body>
+</html>

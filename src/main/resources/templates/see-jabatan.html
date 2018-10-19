@@ -5,10 +5,20 @@
     
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+		<script>
+			$(document).ready(function(){
+				$("#cantDeleteThis").click(function(){
+					swal ("Ada Karyawan yang Mempunyai Jabatan Ini.");	
+				});
+			});
+		</script>
+		
 	</head>
 	<body>
-		<nav th:replace="fragments/fragment :: navbar"></nav>
-		
+		<nav th:replace="fragments/fragment :: navbar"></nav>	
 		<br>
 		<h3 th:text="'Detail Jabatan ' + ${jabatan.nama}"></h3>
 		<br>
@@ -26,14 +36,26 @@
 			<td>Gaji Pokok</td>
 			<td>Rp. <span th:text="${jabatan.gajiPokok}"></span></td>
 		</tr>
+		<tr>
+			<td>Jumlah Karyawan</td>
+			<td th:text="${jabatan.getAllPegawai().size()}"></td>
+		</tr>
 		</table>
 		
-		
-			<form th:action="@{/jabatan/ubah}" class="form-inline" method="GET">
-				<input type="hidden" th:value="${jabatan.id}" name="id"></input>
-				<button class="btn btn-alert mb-2" type="submit">Ubah</button>
+		<div class="btn-toolbar">
+		  <div class="col-md-1">
+			<form th:action="@{/jabatan/ubah}" method="GET" class="form-inline">
+				<input type="hidden" name="id" th:value="${jabatan.id}" ></input>
+				<button class="btn btn-primary" type="submit">Ubah</button>
 			</form>
-					
-
+		  </div>
+			<form th:if="${jabatan.allPegawai.isEmpty()} == true" th:action="@{/jabatan/hapus}" method="POST" class="form-inline">
+				<input type="hidden" name="id" th:value="${jabatan.id}"></input>
+				<button class="btn btn-primary" type="submit">Hapus</button>
+			</form>
+			<div th:unless="${jabatan.allPegawai.isEmpty()} == true" class="form-inline">
+				<button class="btn btn-danger btn-primary" id="cantDeleteThis">Hapus</button>
+			</div>
+		</div>
 	</body>
 </html>

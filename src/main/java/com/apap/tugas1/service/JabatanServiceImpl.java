@@ -22,13 +22,18 @@ public class JabatanServiceImpl implements JabatanService {
 		}
 
 		@Override
-		public void addJabatan(JabatanModel jabatan) {
-			jabatanDb.save(jabatan);
-		}
-
-		@Override
 		public JabatanModel getJabatanDetailById(Long id) {
 			return jabatanDb.getOne(id);
+		}
+		
+		@Override
+		public List<JabatanModel> getAllJabatan() {
+			return jabatanDb.findAll();
+		}
+		
+		@Override
+		public void addJabatan(JabatanModel jabatan) {
+			jabatanDb.save(jabatan);
 		}
 
 		@Override
@@ -40,13 +45,8 @@ public class JabatanServiceImpl implements JabatanService {
 		}
 
 		@Override
-		public void deleteJabatanDetailById(Long id) {
-			// TODO Auto-generated method stub
-			
+		public void hapusJabatanDetailById(Long id) {
+			jabatanDb.deleteById(id);
 		}
 
-		@Override
-		public List<JabatanModel> getAllJabatan() {
-			return jabatanDb.findAll();
-		}
 }
