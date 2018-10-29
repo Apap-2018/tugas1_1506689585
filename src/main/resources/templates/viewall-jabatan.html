@@ -6,15 +6,20 @@
 	
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+   		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 		
 		<script>
     		$(document).ready(function() {
       		$('#jabatanAll').DataTable();
  			});
 		</script>
+		
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
+		<br>
 		<div class="container">
 			<table id="jabatanAll" class="table table-bordered table-striped table-hover">
 				<thead>
@@ -36,6 +41,10 @@
 					</tr>
 				</tbody>
 			</table>
-		</form>
+			<br>
+			<form th:action="@{/}">
+				<button type="submit" class="btn btn-primary mb-2">Kembali Ke Awal</button>
+			</form> 
+		</div>
 	</body>
 </html>

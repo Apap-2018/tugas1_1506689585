@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProvinsiDb extends JpaRepository<ProvinsiModel, Long> {
-
+	ProvinsiModel findByNama(String nama);
 }
