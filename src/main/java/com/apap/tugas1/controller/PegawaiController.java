@@ -80,7 +80,7 @@ public class PegawaiController {
 
         List<PegawaiModel> pegawai = new ArrayList<>();
         
-        if      (idProvinsi != null && idInstansi == null) pegawai = pegawaiService.getPegawaiByProvinsi(provinsiService.getProvinsi(idProvinsi));
+        if (idProvinsi != null && idInstansi == null) pegawai = pegawaiService.getPegawaiByProvinsi(provinsiService.getProvinsi(idProvinsi));
         else if (idJabatan  != null && idInstansi == null) pegawai = pegawaiService.getPegawaiByJabatan(jabatanService.getJabatanDetailById(idJabatan));
         else if (idProvinsi != null && idJabatan  != null) pegawai = pegawaiService.getPegawaiByProvinsiDanJabatan(provinsiService.getProvinsi(idProvinsi), jabatanService.getJabatanDetailById(idJabatan));
         else if (idJabatan  == null && idInstansi != null) pegawai = pegawaiService.getPegawaiByInstansi(instansiService.getInstansi(idInstansi));
